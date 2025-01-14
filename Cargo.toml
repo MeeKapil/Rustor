@@ -1,0 +1,19 @@
+[package]
+name = "rustor"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "rustor"
+path = "src/rustor.rs"
+
+[dependencies]
+config = "0.15.5"
+crossterm = "0.28.1"
+xdg = "2.4.1"
+log = "0.4"
+env_logger = "0.11.6"
+
+
+[features]
+keystroke_log = []
