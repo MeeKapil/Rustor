@@ -1,7 +1,7 @@
-// main.rs
-mod editor;  // Import the `editor` module
+mod editor; // Import the editor module
 
 fn main() {
-    // Call the editor function to run the editor logic
-    editor::run_editor();
-}
+    // Create an instance of Editor and run the editor
+    let editor = editor::Editor {};  
+    editor.run(); 
+}                   
