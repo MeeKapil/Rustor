@@ -5,7 +5,7 @@ edition = "2021"
 
 [[bin]]
 name = "rustor"
-path = "src/rustor.rs"
+path = "src/main.rs"
 
 [dependencies]
 config = "0.15.5"
