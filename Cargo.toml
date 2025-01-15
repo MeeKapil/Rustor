@@ -13,9 +13,7 @@ crossterm = "0.28.1"
 xdg = "2.4.1"
 log = "0.4"
 env_logger = "0.11.6"
-druid = "0.7"
-
-
+druid = "0.8.3"
 
 [features]
 keystroke_log = []

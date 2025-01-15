@@ -59,12 +59,12 @@
 //     fn draw_ui(&self) -> Result<(), io::Error> {
 //         let height = Terminal::size()?.1 as usize;  // Terminal height
 //         let content_height = self.buffer.len();
-        
+
 //         // Display the text content
 //         for (current_row, line) in self.buffer.iter().enumerate() {
 //             print!("{}{}", line, if current_row + 1 < height { "\r\n" } else { "" });
 //         }
-        
+
 //         // Fill the remaining space with empty lines
 //         for _ in content_height..height {
 //             print!("~\r\n");
@@ -153,29 +153,28 @@
 //     editor.run();
 // }
 use druid::{
-    widget::{TextBox, Button, Flex, Label},
-    AppLauncher, Data, Lens, Widget, WindowDesc, Env, Event, EventCtx, LifeCycle, LifeCycleCtx,
-    UpdateCtx, BoxConstraints, Size, RenderContext, WidgetExt,
+    widget::{Button, Flex, TextBox},
+    AppLauncher, Data, Lens, Widget, WidgetExt, WindowDesc,
 };
 use std::fs::File;
 use std::io::{self, Write};
 
 #[derive(Clone, Data, Lens)]
 pub struct Editor {
-    buffer: String,  // Editor text buffer as a single string
+    buffer: String, // Editor text buffer as a single string
 }
 
 impl Editor {
     // Default editor constructor
     pub fn new() -> Self {
         Self {
-            buffer: String::new(),  // Initialize with an empty buffer
+            buffer: String::new(), // Initialize with an empty buffer
         }
     }
 
     // Save the buffer content to a file
     pub fn save_file(&self) -> Result<(), io::Error> {
-        let file_name = "output.txt";  // Hardcoded file name for simplicity
+        let file_name = "output.txt"; // Hardcoded file name for simplicity
         let mut file = File::create(file_name)?;
         writeln!(file, "{}", self.buffer)?;
         Ok(())
@@ -183,14 +182,11 @@ impl Editor {
 }
 
 pub fn build_ui() -> impl Widget<Editor> {
-    let save_button = Button::new("Save")
-        .on_click(|_ctx, data: &mut Editor, _env| {
-            data.save_file().unwrap();
-        });
+    let save_button = Button::new("Save").on_click(|_ctx, data: &mut Editor, _env| {
+        data.save_file().unwrap();
+    });
 
-    let text_box = TextBox::new()
-        .with_text_size(16.0)
-        .lens(Editor::buffer);
+    let text_box = TextBox::new().with_text_size(16.0).lens(Editor::buffer);
 
     let ui = Flex::column()
         .with_child(text_box)
